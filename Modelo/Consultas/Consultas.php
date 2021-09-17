@@ -1,7 +1,7 @@
 <?php
 /* en esta clase de declaran todas las funciones sql para su proxima interaccion desde el controlador*/
-require_once('Modelo/db/BaseDeDatos.php');
-require_once('cobradores.php');
+require_once('Modelo/db/BaseDeDatosO.php');
+require_once('Modelo/GetYSet/cobradores.php');
 class consultas{
     private $con;
     

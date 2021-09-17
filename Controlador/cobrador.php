@@ -1,6 +1,6 @@
 <?php
-require_once('./Modelo/cobradores.php');
-require_once('./Modelo/Consultas.php');
+require_once('Modelo/GetYSet/cobradores.php');
+require_once('Modelo/Consultas/Consultas.php');
 class Ccobrador extends credencial{
 //en controlara la vistas y algunas funciones de consulta
         private $mCobradores;
@@ -27,6 +27,9 @@ class Ccobrador extends credencial{
         $contraseña=$_POST['contraseña'];
        // $this->mCobradores=$this->validar($usuario,$contraseña);
         if($usuario==$this->getusuario()&& $contraseña==$this->getcontra()){
+            session_start();
+                    $_SESSION['usuario']=$usuario;
+                    header("location:?c=cobrador&a=genTabla");
            $this-> genTabla();
         }else{
             header('location:index.php');
@@ -34,9 +37,20 @@ class Ccobrador extends credencial{
         }
 
     }
+    public function siExisteSession(){
+        session_start();
+        $usuario=$_SESSION['usuario'];
+        if($usuario==null|| $usuario=''){
+            echo'<script type="text/javascript">
+            window.alert("Favor de iniciar sesión"); 
+            window.location = "?c=cobrador&a=login"</script>
+            ';
+        }
+    }
     
 
     public function genTabla(){
+        $this->siExisteSession();
         //se encarga de la vista principal y cargar la tabla con los registros
         if(isset($_GET['CVE_COB'])){
         //aqui recibe la variable get para obtener la informacion de esa clave aparte de
@@ -67,6 +81,7 @@ class Ccobrador extends credencial{
         $this->genTabla();
     }
     public function eliminar(){
+        $this->siExisteSession();
         $this->objPDO->eliminar($_GET['CVE_COB']);
         $this->mCobradores=$this->objPDO->listarCobradores();
         require_once('vista/header.php');
