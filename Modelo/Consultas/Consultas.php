@@ -59,7 +59,7 @@ class consultas{
 
 
     
-       
+    }
     public function listarCobradores(){
          $listadoRcoc=[];
         $sql="SELECT * FROM PL_COBRADORES";
