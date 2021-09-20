@@ -7,9 +7,6 @@ require_once('Modelo/db/BaseDeDatosM.php');
 require_once('Modelo/GetYSet/cobradores.php');
 require_once('Modelo/GetYSet/usuariosYHistorial.php');
 
-require_once('Modelo/db/BaseDeDatos.php');
-require_once('cobradores.php');
-
 class consultas{
     private $ociConect;
     private $MysqlConect;
