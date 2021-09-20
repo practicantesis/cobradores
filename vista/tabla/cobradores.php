@@ -2,7 +2,7 @@
 </div>
 
 <div id="contenidoTabla">
-    <button type="button" class="btn btn-primary" id="Actualizar" onclick="Actualizar()">Actualizar</button>
+    <button type="button" class="btn btn-primary" id="Actualizar" onclick="Actualizar()">Actualizar  <i class="fa fa-retweet"></i></button>
     <label id="buscador">Buscar:<input id="busqueda" type="text" onkeyup="busqueda()"></label>
     <table id="cobradoresT" class="table table-hover">
         <thead class="thead-light">
@@ -25,7 +25,7 @@
                     <td name="id"><?php echo $regCob->getnombre() ?></td>
                     <td name="id"><?php echo $regCob->getactivado() ?></td>
                     <td name="id"><?php echo $regCob->getliquidaciones() ?></td>
-                    <td><a href="?c=cobrador&a=genTabla&CVE_COB=<?php echo $regCob->getcve_cob(); ?>" onclick="Editar()">Editar</a></td>
+                    <td><a href="?c=cobrador&a=genTabla&CVE_COB=<?php echo $regCob->getcve_cob(); ?>" onclick="Editar()"><i class="fa fa-edit"></i></a></td>
               </tr>
             <?php endforeach; ?>
         </tbody>

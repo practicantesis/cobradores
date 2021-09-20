@@ -1,15 +1,58 @@
 <?php
 /* en esta clase de declaran todas las funciones sql para su proxima interaccion desde el controlador*/
-require_once('BaseDeDatos.php');
-require_once('cobradores.php');
+require_once('Modelo/db/BaseDeDatosO.php');
+require_once('Modelo/db/BaseDeDatosM.php');
+require_once('Modelo/GetYSet/cobradores.php');
+require_once('Modelo/GetYSet/usuariosYHistorial.php');
 class consultas{
-    private $con;
-    
+    private $ociConect;
+    private $MysqlConect;
+
     function __construct()
     {   
-        $this->con=BD::conectar();
-        
+        $this->ociConect=Ocidb::conectar();
+        $this->MysqlConect=Mysqldb::conectar();
 
+
+    }
+    public function validar($usuario)
+    {
+        //valida la existencia del usuario
+        $sqlx = "SELECT * FROM s_usuarios WHERE usuario=?";
+        try {
+            $stemet = $this->MysqlConect->prepare($sqlx);
+            $stemet->execute(array($usuario));
+            $stemet->setFetchMode(PDO::FETCH_CLASS, 'UsuarioEHistorial');
+            $X = $stemet->fetch();
+            return ($X);
+        } catch (Exception $ex) {
+            $ex->getMessage();
+        }
+    }
+    public function CambioContra($id, $contraseña)
+    {
+        //Realiza la encriptacion de la contraseña
+        $contraEncript = password_hash($contraseña, PASSWORD_DEFAULT, ['cost' => 10]);
+        echo $contraEncript;
+        $sql = "UPDATE s_usuarios SET contraseña='$contraEncript',Status='Activado' where  id_usuario=$id";
+        try {
+            $pdo = $this->MysqlConect->prepare($sql);
+            $pdo->execute();
+            //si se efectuaron cambios en la tabla se envia la alerta verficando que se afecto el registro
+            if ($pdo->rowCount() > 0) {
+                //si se realizo cambio se imprime y se envia la alerta tipo javascript
+                echo '
+                <script type="text/javascript">
+                 window.alert("Se actualizo la contraseña correctamente"); </script>
+                 ';
+                return true;
+            } else {
+
+                return false;
+            }
+        } catch (Exception $ex) {
+            $ex->getMessage();
+        }
     }
     
        
@@ -17,7 +60,7 @@ class consultas{
          $listadoRcoc=[];
         $sql="SELECT * FROM PL_COBRADORES";
         try{
-            $centencia=oci_parse($this->con,$sql);
+            $centencia=oci_parse($this->ociConect,$sql);
             oci_execute($centencia);
             while(($row=oci_fetch_array($centencia,OCI_ASSOC))!=false){
                 $lista = new cobrador();
@@ -44,7 +87,7 @@ class consultas{
            $sql ="INSERT INTO PL_COBRADORES(CVE_COB,OFICINA,NOMBRE,ACTIVADO,LIQUIDACIONES) 
         VALUES ('$CVE_COB','$oficina','$nombre','$activado','$liquidacion')";
      //   var_dump($sql);
-            $sql=oci_parse($this->con,$sql);
+            $sql=oci_parse($this->ociConect,$sql);
             oci_execute($sql);
             //si se efectuaron cambios en la tabla se envia la alerta verficando que se afecto el registro
            if(oci_num_rows($sql)>0){
@@ -72,7 +115,7 @@ class consultas{
         $listSelectUNO=[];
         $sql="SELECT * FROM PL_COBRADORES WHERE CVE_COB = '$uno'";
         try{
-            $sqlCentencia=oci_parse($this->con,$sql);
+            $sqlCentencia=oci_parse($this->ociConect,$sql);
             oci_execute($sqlCentencia);
             while(($row=oci_fetch_array($sqlCentencia,OCI_ASSOC))!=false){
                 $SLUNO = new cobrador();
@@ -100,7 +143,7 @@ class consultas{
         $sql2 ="UPDATE PL_COBRADORES SET CVE_COB='$CVE_COB',OFICINA='$oficina',NOMBRE='$nombre',
         ACTIVADO='$activado',LIQUIDACIONES='$liquidacion' WHERE CVE_COB='$CVE_COB'";
 
-        $sql2=oci_parse($this->con,$sql2);
+        $sql2=oci_parse($this->ociConect,$sql2);
         oci_execute($sql2);
             //si se efectuaron cambios en la tabla se envia la alerta verficando que se afecto el registro
             if(oci_num_rows($sql2)>0){
@@ -124,7 +167,7 @@ class consultas{
         try{
             $sql="DELETE FROM PL_COBRADORES WHERE CVE_COB='$CVE_COB'";
           //  var_dump($sql);
-            $sql=oci_parse($this->con,$sql);
+            $sql=oci_parse($this->ociConect,$sql);
             oci_execute($sql);
 
           /*  $pdo=$this->con->prepare($sql);

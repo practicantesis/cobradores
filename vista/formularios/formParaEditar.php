@@ -4,10 +4,10 @@
 
         <div class="Modificar">
 
-            <button type="button" class="btn btn-primary" id="Agregar" onclick="AgregarDesdeEditar()">Regresar</button>
+            <button type="button" class="btn btn-primary" id="Agregar" onclick="AgregarDesdeEditar()"><i class="fa fa-arrow-left"></i>Regresar </button>
             <!-- <button type="button" class="btn btn-secondary" id="Editar" onclick="Editar()">Editar</button>-->
             <?php foreach ($this->mCobradoresSOLOUNO as $reg_sect) : ?>
-                <button type="button" class="btn btn-danger" id="Eliminar" onclick="eliminar()">Eliminar</button>
+                <button type="button" class="btn btn-danger" id="Eliminar" onclick="eliminar()">Eliminar <i class="fa fa-trash"></i></button>
                 <!--funcion paa confirmar si se quiere elminar a un usuario en lazada al boton elminar-->
 
 
@@ -64,7 +64,7 @@
                     <label>Activado:<input type="text" id="Activado_Editor" name="Activado" value="<?php echo $reg_sect->getactivado() ?>" maxlength="1" onkeypress="return (event.charCode==48||event.charCode==49)" required></label>
                     <label>Liquidacion:<input type="text" id="liquidacion_Editor" name="liquidacion" value="<?php echo $reg_sect->getliquidaciones() ?>" maxlength="1" onkeypress="return (event.charCode==48||event.charCode==49)" required></label>
                     <input id="prodId" name="idcve" type="hidden" value="<?php echo $reg_sect->getcve_cob() ?>">
-                    <button type="submit" id="btnguardar_Editor" class="btn btn-success" onclick="valicacionDeCamposVacios()" value="Editar">guardar</button>
+                    <button type="submit" id="btnguardar_Editor" class="btn btn-success" onclick="valicacionDeCamposVacios()" value="Editar">Guardar <i class="fa fa-save"></i></button>
                 <?php endforeach; ?>
                 <!--****************Este es un documento tipo javascript-->
                 <script type="text/javascript">

@@ -4,8 +4,8 @@
 
         <div class="Modificar">
 
-            <button type="button" class="btn btn-primary" id="Agregar" onclick="Agregar()" >Agregar</button>
-            <button type="button" class="btn btn-secondary" id="Eliminar" disabled="">Eliminar</button>
+            <button type="button" class="btn btn-primary" id="Agregar" onclick="Agregar()" >Agregar <i class="fa fa-plus"></i></button>
+            <button type="button" class="btn btn-secondary" id="Eliminar" disabled="">Eliminar <i class="fa fa-trash"></i></button>
 
 
             <form name="frmAgregar" action="?c=cobrador&a=agregar" id="datos" method="POST">
@@ -64,7 +64,7 @@
 
                 <label>Liquidacion:<input type="text" id="liquidacion" name="liquidacion" required disabled="" maxlength="1" onkeypress="return (event.charCode==48||event.charCode==49)"></label>
 
-                <button type="submit" id="btnguardar" class="btn btn-success" value="agregar" disabled="" >guardar</button>
+                <button type="submit" id="btnguardar" class="btn btn-success" value="agregar" disabled="" >Guardar <i class="fa fa-save"></i></button>
 
 
             </form>
