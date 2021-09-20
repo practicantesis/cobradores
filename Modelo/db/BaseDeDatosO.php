@@ -1,7 +1,10 @@
 <?php
+
 class Ocidb{
     //archivo para establecer la coneccion con la base de datos
     private $ociConect;
+
+
    
     function __construct()
     {

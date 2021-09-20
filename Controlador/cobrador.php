@@ -1,9 +1,14 @@
 <?php
 require_once('Modelo/GetYSet/cobradores.php');
+<<<<<<< HEAD
 require_once('Modelo/GetYSet/usuariosYHistorial.php');
 
 require_once('Modelo/Consultas/Consultas.php');
 class Ccobrador {
+=======
+require_once('Modelo/Consultas/Consultas.php');
+class Ccobrador extends credencial{
+>>>>>>> f2d3ed36023f4d95b3f65513ea5b696e21c99c83
 //en controlara la vistas y algunas funciones de consulta
         private $mCobradores;
         private $mCobradoresSOLOUNO;
@@ -29,6 +34,7 @@ class Ccobrador {
          
         //valida el usuario y contraseña
         $usuario = $_POST['usuario'];
+<<<<<<< HEAD
         $contraseña = $_POST['contraseña'];
         // $this->mCobradores=$this->validar($usuario,$contraseña);
         $select = $this->UEH = $this->obj->validar($usuario);
@@ -93,6 +99,21 @@ class Ccobrador {
              ';
         }
     }
+=======
+        $contraseña=$_POST['contraseña'];
+       // $this->mCobradores=$this->validar($usuario,$contraseña);
+        if($usuario==$this->getusuario()&& $contraseña==$this->getcontra()){
+            session_start();
+                    $_SESSION['usuario']=$usuario;
+                    header("location:?c=cobrador&a=genTabla");
+           $this-> genTabla();
+        }else{
+            header('location:index.php');
+            
+        }
+
+    }
+>>>>>>> f2d3ed36023f4d95b3f65513ea5b696e21c99c83
     public function siExisteSession(){
         session_start();
         $usuario=$_SESSION['usuario'];
@@ -103,11 +124,14 @@ class Ccobrador {
             ';
         }
     }
+<<<<<<< HEAD
     public function salir(){
         session_start();
         session_destroy();
         header("location:index.php");
     }
+=======
+>>>>>>> f2d3ed36023f4d95b3f65513ea5b696e21c99c83
     
 
     public function genTabla(){
@@ -145,8 +169,13 @@ class Ccobrador {
     }
     public function eliminar(){
         $this->siExisteSession();
+<<<<<<< HEAD
         $this->obj->eliminar($_GET['CVE_COB']);
         $this->mCobradores=$this->obj->listarCobradores();
+=======
+        $this->objPDO->eliminar($_GET['CVE_COB']);
+        $this->mCobradores=$this->objPDO->listarCobradores();
+>>>>>>> f2d3ed36023f4d95b3f65513ea5b696e21c99c83
         require_once('vista/header.php');
         require_once('vista/menu.php');
         require_once('/var/www/html/cobradores/vista/formularios/formParaAgregar.php');
