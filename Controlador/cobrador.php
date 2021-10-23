@@ -26,7 +26,6 @@ class Ccobrador {
         
     }
     public function validar(){
-         
         //valida el usuario y contraseña
         $usuario = $_POST['usuario'];
         $contraseña = $_POST['contraseña'];
@@ -108,7 +107,13 @@ class Ccobrador {
         session_destroy();
         header("location:index.php");
     }
-    
+    public function genTablaDeAgregados(){
+        session_start();
+        $this->UEH=$this->obj->listarCobradoresAgregados();
+        require_once('vista/header.php');
+        require_once('vista/tabla/historial.php');
+        require_once('vista/footer.php');
+    }
 
     public function genTabla(){
         $this->siExisteSession();
@@ -140,7 +145,9 @@ class Ccobrador {
         $this->genTabla();
     }
     public function agregar(){
-        $this->obj->agregar();
+        session_start();
+        $idUsuario=$_SESSION['id'];
+        $this->obj->agregar($idUsuario);
         $this->genTabla();
     }
     public function eliminar(){

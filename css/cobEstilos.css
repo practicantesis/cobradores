@@ -17,6 +17,9 @@
 width: 100%;
 float: left;
 }
+#nombre{
+    width:10px;
+}
 
 #btnguardar{
     float: right;
@@ -49,11 +52,9 @@ float: left;
     float: left;
 }
 #menu{
-    background-color: red;
     width: 100%;
 }
 #salir{
-    
 	float: right;
 }
 

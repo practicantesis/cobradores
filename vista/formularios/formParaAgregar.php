@@ -58,7 +58,8 @@
 
                     </select>
                 </div>
-                <label>Nombre:<input type="text" id="nombre" name="nombre" required disabled="" onkeypress="return (event.charCode>=65 && event.charCode<=90|| event.charCode>=97 && event.charCode<=122|| event.charCode==32)"></label>
+
+               <label>Nombre:<input type="text" id="nombre" class="col-xs-4" name="nombre" required disabled="" onkeypress="return (event.charCode>=65 && event.charCode<=90|| event.charCode>=97 && event.charCode<=122|| event.charCode==32)"></label>
 
                 <label>Activado:<input type="text" id="Activado" name="Activado" required disabled="" maxlength="1" onkeypress="return (event.charCode==48||event.charCode==49)"></label>
 

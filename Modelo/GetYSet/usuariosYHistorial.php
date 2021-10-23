@@ -29,19 +29,22 @@ class UsuarioEHistorial{
     private $id;
     private $id_usuarioH;
     private $fecha;
+    private $clave;
     private $oficina;
-    private $monto;
+    private $Nombre;
 
     public function getidH(){ return $this->id ;}
     public function getusuarioH(){ return $this->id_usuarioH;}
     public function getfecha(){ return $this->fecha;}
+    public function getclave(){ return $this->clave;}
     public function getoficina(){ return $this->oficina;}
-    public function getmonto(){ return $this->monto;}
+    public function getnombre(){ return $this->Nombre;}
 
     public function setidH($id ){ $this->id = $id ;}
     public function setusuarioH($id_usuarioH){ $this->id_usuarioH=$id_usuarioH;}
+    public function setclave($clave){ $this->clave=$clave;}
     public function setfecha($fecha){ $this->fecha=$fecha;}
     public function setoficina($oficina){ $this->oficina=$oficina;}
-    public function setmontos($monto){$this->monto=$monto;}
+    public function setnombre($Nombre){$this->Nombre=$Nombre;}
     
 }

@@ -60,7 +60,7 @@
                             <option>MTY</option>
                         </select>
                     </div>
-                    <label>Nombre:<input type="text" id="nombre_Editor" name="nombre" value="<?php echo $reg_sect->getnombre() ?>" onkeypress="return (event.charCode>=65 && event.charCode<=90|| event.charCode>=97 && event.charCode<=122|| event.charCode==32)" required></label>
+                    <label>Nombre:<input type="text" id="nombre_Editor" class="col-xs-4" name="nombre" value="<?php echo $reg_sect->getnombre() ?>" onkeypress="return (event.charCode>=65 && event.charCode<=90|| event.charCode>=97 && event.charCode<=122|| event.charCode==32)" required></label>
                     <label>Activado:<input type="text" id="Activado_Editor" name="Activado" value="<?php echo $reg_sect->getactivado() ?>" maxlength="1" onkeypress="return (event.charCode==48||event.charCode==49)" required></label>
                     <label>Liquidacion:<input type="text" id="liquidacion_Editor" name="liquidacion" value="<?php echo $reg_sect->getliquidaciones() ?>" maxlength="1" onkeypress="return (event.charCode==48||event.charCode==49)" required></label>
                     <input id="prodId" name="idcve" type="hidden" value="<?php echo $reg_sect->getcve_cob() ?>">
