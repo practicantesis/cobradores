@@ -17,9 +17,12 @@
 width: 100%;
 float: left;
 }
-#nombre{
+#nombre,#nombre_Editor{
+
     width:550px;
+    text-transform: uppercase;
 }
+
 
 #btnguardar{
     float: right;
